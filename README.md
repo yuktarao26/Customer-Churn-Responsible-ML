@@ -62,16 +62,16 @@ The customer ID is excluded from model training.
 ## Project Structure
 ```text
 Customer-Churn-Responsible-ML/
+│
 ├── README.md
-├── data/
-├── notebooks/
-│   └── customer_churn_baseline_notebook.ipynb
-├── documents/
-│   ├── problem_framing_memo.pdf
-│   ├── responsible_data_card.docx
-│   ├── risk_register.pdf
-│   └── problem_framing_memo.docx
-└── requirements.txt
+├── requirements.txt
+├── customer_churn_baseline_notebook.ipynb
+├── customer_churn_risk_register.docx
+├── customer_churn_risk_register.pdf
+├── problem_framing_memo.docx
+├── problem_framing_memo.pdf
+├── responsible_data_card_completed.docx
+└── responsible_data_card_completed.pdf
 ```
 
 ## Limitations
