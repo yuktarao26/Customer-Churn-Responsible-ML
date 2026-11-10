@@ -79,3 +79,31 @@ The dataset contains only 12 records. Therefore, the results are preliminary and
 
 ## Conclusion
 This project demonstrates a basic customer churn prediction workflow while emphasizing responsible data handling, evaluation, transparency and human oversight.
+---
+
+## Task 03: Feature Engineering & Preprocessing Pipeline
+
+### Objective
+To build a reusable machine learning preprocessing pipeline using Scikit-learn.
+
+### Dataset
+UCI Adult Income Dataset (48,842 records).
+
+### Work Completed
+- Loaded and explored a real-world tabular dataset.
+- Checked missing values and duplicate records.
+- Separated input features and target variable.
+- Performed train-test splitting before preprocessing.
+- Built numerical and categorical preprocessing pipelines.
+- Used SimpleImputer, StandardScaler and OneHotEncoder.
+- Implemented ColumnTransformer.
+- Built a complete Scikit-learn Pipeline using Logistic Regression.
+- Evaluated model performance using Accuracy, Precision, Recall and F1-score.
+- Visualised the confusion matrix.
+- Performed permutation-based feature importance analysis.
+
+### Technologies Used
+Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Jupyter Notebook.
+
+### Notebook
+[View Task 03 Notebook](RabTech_Task03_Feature_Engineering_Preprocessing.ipynb)
