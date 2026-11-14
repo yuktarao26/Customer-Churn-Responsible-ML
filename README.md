@@ -86,3 +86,36 @@ Visit `http://localhost:8000/docs`.
 
 ## Notes
 This is an educational project, not a production-grade service. SMS classification can make mistakes; do not use it as the sole basis for important decisions.
+
+## Task 06 – Real-Time ML Inference REST API & Capstone
+
+### Objective
+Deploy the SMS Spam Classification model from Task 05 as a REST API using FastAPI.
+
+### Features
+- FastAPI-based REST API.
+- `/predict` endpoint accepting SMS messages in JSON format.
+- Returns spam/ham classification and prediction probabilities.
+- Pydantic request and response validation.
+- Model loading and prediction using TensorFlow/Keras.
+- Unit tests using Pytest.
+- Docker configuration for containerization.
+
+### Project Structure
+- `app/main.py` – FastAPI application
+- `app/schemas.py` – Request and response schemas
+- `app/predictor.py` – Model loading and prediction
+- `models/sms_spam_classifier.keras` – Trained model
+- `tests/test_api.py` – API unit tests
+- `Dockerfile` – Docker configuration
+- `requirements.txt` – Dependencies
+
+### Technologies
+Python, FastAPI, TensorFlow, Keras, Pydantic, Pytest, Docker.
+
+### API Endpoint
+`POST /predict`
+
+### Documentation
+Interactive API documentation is available at `/docs` when the server is running.
+
