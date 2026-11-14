@@ -141,3 +141,36 @@ Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Jupyter Notebook and J
 ### Deliverables
 - RabTech_Task04_Model_Training_and_Tuning.ipynb
 - RabTech_Task04_Best_Model.joblib
+- ## Task 05 – Deep Learning / NLP Text Classifier
+
+### Objective
+Build a deep learning-based text classification model to identify spam and legitimate SMS messages using TensorFlow and Keras.
+
+### Work Completed
+- Performed text preprocessing and cleaning.
+- Converted text into numerical sequences using `TextVectorization`.
+- Built a multilayer neural network using TensorFlow/Keras.
+- Implemented an Embedding layer, Batch Normalization, and Dropout.
+- Used Early Stopping to help prevent overfitting.
+- Trained and evaluated the model.
+- Visualized training and validation accuracy and loss.
+- Tested unseen SMS messages and generated classification confidence scores.
+
+### Model Architecture
+- TextVectorization
+- Embedding Layer
+- Global Average Pooling
+- Batch Normalization
+- Dense Layer (64 neurons, ReLU)
+- Dropout (0.5)
+- Output Layer (Sigmoid)
+
+### Deliverables
+1. `RabTech_Task05_Deep_Learning_NLP_Classifier.ipynb`
+2. `RabTech_Task05_SMS_Spam_Classifier.keras`
+
+### Technologies Used
+Python | TensorFlow | Keras | Pandas | NumPy | Matplotlib | Scikit-learn | Google Colab
+
+### Outcome
+Developed an SMS Spam Classification model that predicts whether a given SMS message is spam or ham and provides a confidence score.
