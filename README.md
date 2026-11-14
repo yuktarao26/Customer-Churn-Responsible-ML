@@ -1,176 +1,88 @@
-# Customer Churn Prediction – Responsible ML
+# RabTech Task 06 – Real-Time ML Inference REST API & Capstone
 
-## Project Overview
-This project demonstrates a responsible Machine Learning approach to customer churn prediction using Python and Scikit-learn.
+## Project overview
+This project exposes the SMS Spam Classification model developed in Task 05 through a REST API built with FastAPI. The API accepts SMS text as JSON and returns a predicted class with spam/ham probabilities.
 
-The objective is to explore customer behaviour patterns and identify factors associated with customer churn.
+## Architecture
+1. Client sends SMS text to `POST /predict`.
+2. FastAPI validates the JSON payload with Pydantic.
+3. The prediction module loads the saved Keras model on the first prediction and reuses it.
+4. The model returns a spam score; the API converts it into `spam` or `ham` and complementary probabilities.
+5. The API returns structured JSON.
 
-## Internship Details
-- Organization: RabTech Academy
-- Domain: Artificial Intelligence & Machine Learning
-- Task: Task 02 – ML Problem Framing & Responsible Data Card
-
-## Technologies Used
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- Google Colab
-- GitHub
-
-## Dataset Description
-The supplied training dataset contains 12 customer records and 7 columns.
-
-Features include:
-- Tenure months
-- Support tickets
-- Monthly spending
-- Last login days
-- Subscription plan
-
-Target:
-- `churned` (0 = Not churned, 1 = Churned)
-
-The customer ID is excluded from model training.
-
-## Machine Learning Approach
-1. Data loading and exploration
-2. Data quality checks
-3. Feature preprocessing
-4. Majority-class baseline
-5. Logistic Regression classification
-6. Leave-One-Out Cross-Validation
-7. Model evaluation
-
-## Evaluation Metrics
-- Accuracy
-- Precision
-- Recall
-- F1-score
-- Confusion Matrix
-
-## Responsible AI Considerations
-- Data privacy and protection
-- Bias and fairness
-- False-positive and false-negative risks
-- Data leakage prevention
-- Human oversight
-- Model limitations
-
-## Project Structure
+## Project structure
 ```text
-Customer-Churn-Responsible-ML/
-│
-├── README.md
+RabTech_Task06_Capstone/
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── predictor.py
+│   └── schemas.py
+├── models/
+│   └── sms_spam_classifier.keras
+├── tests/
+│   └── test_api.py
+├── Dockerfile
 ├── requirements.txt
-├── customer_churn_baseline_notebook.ipynb
-├── customer_churn_risk_register.docx
-├── customer_churn_risk_register.pdf
-├── problem_framing_memo.docx
-├── problem_framing_memo.pdf
-├── responsible_data_card_completed.docx
-└── responsible_data_card_completed.pdf
+└── README.md
 ```
 
-## Limitations
-The dataset contains only 12 records. Therefore, the results are preliminary and intended for educational demonstration only. The model is not suitable for real-world deployment without further validation.
+## Required model file
+Copy your Task 05 model into `models/` and rename it exactly:
+`sms_spam_classifier.keras`
 
-## Conclusion
-This project demonstrates a basic customer churn prediction workflow while emphasizing responsible data handling, evaluation, transparency and human oversight.
----
+Expected source filename: `RabTech_Task05_SMS_Spam_Classifier.keras`.
 
-## Task 03: Feature Engineering & Preprocessing Pipeline
+The model file is not included in this package because it must be the actual model trained in your Task 05 notebook. This code expects the Keras model to accept raw SMS strings and return one sigmoid spam probability per message (with text vectorization included in the saved model).
 
-### Objective
-To build a reusable machine learning preprocessing pipeline using Scikit-learn.
+## Run locally (Windows)
+```bash
+python -m venv .venv
+.venv\\Scripts\\activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+Open `http://127.0.0.1:8000/docs` for interactive API documentation.
 
-### Dataset
-UCI Adult Income Dataset (48,842 records).
+## API endpoints
+- `GET /` – API status.
+- `GET /health` – basic health response.
+- `POST /predict` – classifies one or more SMS messages.
 
-### Work Completed
-- Loaded and explored a real-world tabular dataset.
-- Checked missing values and duplicate records.
-- Separated input features and target variable.
-- Performed train-test splitting before preprocessing.
-- Built numerical and categorical preprocessing pipelines.
-- Used SimpleImputer, StandardScaler and OneHotEncoder.
-- Implemented ColumnTransformer.
-- Built a complete Scikit-learn Pipeline using Logistic Regression.
-- Evaluated model performance using Accuracy, Precision, Recall and F1-score.
-- Visualised the confusion matrix.
-- Performed permutation-based feature importance analysis.
+Request:
+```json
+{"messages": ["You won a free prize!", "Are we still meeting at 6?"]}
+```
 
-### Technologies Used
-Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Jupyter Notebook.
+Example response (illustrative only; actual scores depend on your trained model):
+```json
+{
+  "predictions": [
+    {
+      "message": "You won a free prize!",
+      "label": "spam",
+      "spam_probability": 0.91,
+      "ham_probability": 0.09
+    }
+  ]
+}
+```
+The example scores are placeholders, not measured results. If the model file is missing, `/predict` returns HTTP 503.
 
-### Notebook
-[View Task 03 Notebook](RabTech_Task03_Feature_Engineering_Preprocessing.ipynb)
----
+## Run tests
+```bash
+pytest -q
+```
+Tests mock prediction, so API request validation and response handling can be tested without the trained model.
 
-## Task 04: Supervised Classification & Hyperparameter Tuning
+## Docker
+Ensure `models/sms_spam_classifier.keras` exists, then:
+```bash
+docker build -t rabtech-sms-api .
+docker run --rm -p 8000:8000 rabtech-sms-api
+```
+Visit `http://localhost:8000/docs`.
 
-### Objective
-To train and compare multiple supervised machine learning models, optimise hyperparameters using GridSearchCV and Stratified K-Fold Cross-Validation, and select the best-performing model.
-
-### Dataset
-UCI Adult Income Dataset.
-
-### Models Implemented
-1. Logistic Regression
-2. Decision Tree Classifier
-3. Random Forest Classifier
-4. Gradient Boosting Classifier
-
-### Work Completed
-- Loaded and explored the dataset.
-- Performed data preprocessing.
-- Split the dataset into training and testing sets.
-- Trained four machine learning models.
-- Compared models using Accuracy, Precision, Recall, F1-score and ROC-AUC.
-- Applied GridSearchCV for hyperparameter tuning.
-- Used Stratified 5-Fold Cross-Validation.
-- Generated confusion matrix and ROC-AUC curves.
-- Selected the best-performing model.
-- Saved the trained model using Joblib.
-
-### Technologies Used
-Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Jupyter Notebook and Joblib.
-
-### Deliverables
-- RabTech_Task04_Model_Training_and_Tuning.ipynb
-- RabTech_Task04_Best_Model.joblib
-- ## Task 05 – Deep Learning / NLP Text Classifier
-
-### Objective
-Build a deep learning-based text classification model to identify spam and legitimate SMS messages using TensorFlow and Keras.
-
-### Work Completed
-- Performed text preprocessing and cleaning.
-- Converted text into numerical sequences using `TextVectorization`.
-- Built a multilayer neural network using TensorFlow/Keras.
-- Implemented an Embedding layer, Batch Normalization, and Dropout.
-- Used Early Stopping to help prevent overfitting.
-- Trained and evaluated the model.
-- Visualized training and validation accuracy and loss.
-- Tested unseen SMS messages and generated classification confidence scores.
-
-### Model Architecture
-- TextVectorization
-- Embedding Layer
-- Global Average Pooling
-- Batch Normalization
-- Dense Layer (64 neurons, ReLU)
-- Dropout (0.5)
-- Output Layer (Sigmoid)
-
-### Deliverables
-1. `RabTech_Task05_Deep_Learning_NLP_Classifier.ipynb`
-2. `RabTech_Task05_SMS_Spam_Classifier.keras`
-
-### Technologies Used
-Python | TensorFlow | Keras | Pandas | NumPy | Matplotlib | Scikit-learn | Google Colab
-
-### Outcome
-Developed an SMS Spam Classification model that predicts whether a given SMS message is spam or ham and provides a confidence score.
+## Notes
+This is an educational project, not a production-grade service. SMS classification can make mistakes; do not use it as the sole basis for important decisions.
