@@ -107,3 +107,37 @@ Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Jupyter Notebook.
 
 ### Notebook
 [View Task 03 Notebook](RabTech_Task03_Feature_Engineering_Preprocessing.ipynb)
+---
+
+## Task 04: Supervised Classification & Hyperparameter Tuning
+
+### Objective
+To train and compare multiple supervised machine learning models, optimise hyperparameters using GridSearchCV and Stratified K-Fold Cross-Validation, and select the best-performing model.
+
+### Dataset
+UCI Adult Income Dataset.
+
+### Models Implemented
+1. Logistic Regression
+2. Decision Tree Classifier
+3. Random Forest Classifier
+4. Gradient Boosting Classifier
+
+### Work Completed
+- Loaded and explored the dataset.
+- Performed data preprocessing.
+- Split the dataset into training and testing sets.
+- Trained four machine learning models.
+- Compared models using Accuracy, Precision, Recall, F1-score and ROC-AUC.
+- Applied GridSearchCV for hyperparameter tuning.
+- Used Stratified 5-Fold Cross-Validation.
+- Generated confusion matrix and ROC-AUC curves.
+- Selected the best-performing model.
+- Saved the trained model using Joblib.
+
+### Technologies Used
+Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Jupyter Notebook and Joblib.
+
+### Deliverables
+- RabTech_Task04_Model_Training_and_Tuning.ipynb
+- RabTech_Task04_Best_Model.joblib
